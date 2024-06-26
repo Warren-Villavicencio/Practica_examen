@@ -1,27 +1,26 @@
-name: automatizado
-on: 
-   push:
-        branches: [main] 
-          
-        
+name: Commit Automático
+
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   build:
-           runs-on: Ubuntu -latest
-           permissions:
-            contents: write
+    runs-on: ubuntu-latest
 
-    
-           steps:
-                  - name: Checkout repo
-                    uses: actions/checkout@v4
-      
-                  - name: GitHub Commit Push File
- 
-                    uses: maxgfr/github-commit-push-file@v0.0.3
-                     with:
-   
-                      commit_name: 
-          
-           
-           
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Configurar Git
+      run: |
+        git config --global user.name ' Warren Antonio Villavicencio Merino'
+        git config --global user.email 'wavillavicencio@utpl.edu.ec'
+
+    - name: Hacer commit
+      run: |
+        git add .
+        git commit -m "Commit automático"
+        git push
+
 
